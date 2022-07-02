@@ -26,6 +26,18 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "500kb",
+                "maximumError": "1mb"
+              },
+              {
+                "type": "anyComponentStyle",
+                "maximumWarning": "2kb",
+                "maximumError": "4kb"
+              }
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -37,18 +49,6 @@
           },
           "configurations": {
             "dev": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
-                }
-              ],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -58,18 +58,6 @@
               "outputHashing": "all"
             },
             "prod": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
-                }
-              ],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -91,12 +79,16 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "course-app:build",
+            "port": 5200
+          },
           "configurations": {
-            "production": {
-              "browserTarget": "course-app:build:production"
-            },
             "development": {
               "browserTarget": "course-app:build:development"
+            },
+            "production": {
+              "browserTarget": "course-app:build:production"
             }
           },
           "defaultConfiguration": "development"
